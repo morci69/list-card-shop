@@ -42,52 +42,32 @@ let items = [{
         img: 'assets/img/piz-buin.jpg'
     }
 ];
-let totalProduct = 0;
+let totalProduct = 1;
 let resultTotalPrice = 0.00;
 
-
 // Funciones
-
 const initialHtmlList = () => {
-    ProductsList();
     totalProductBuy.innerHTML = `<span class="total-products"><b>TOTAL</b> ( 0 producto )</span>`;
     totalPriceBuy.innerHTML = `<span class="price-product">${resultTotalPrice.toFixed(2)}€</span>`;
 }
 
-const ProductsList = () => {
-
-    listProductsUI.innerHTML = '';
-    
-    items.forEach(element => {
-        listProductsUI.innerHTML += `<div class="row box-list"><div class="col-6 col-sm-6">
-        <p class="title-product">${element.nameProduct} ${element.quantity}</p>
+const ProductsList = items.map((item) => { return listProductsUI.innerHTML += 
+    `<div class="row box-list"><div class="col-6 col-sm-6">
+        <p class="title-product">${item.nameProduct} ${item.quantity}</p>
     </div>
     <div class="col-3 col-sm-3">
-        <span class="price-product">${element.price}€</span>
+        <span class="price-product">${item.price}€</span>
     </div>
     <div class="col-3 col-sm-3">
-        <button class="btn btn-success" type="submit" onclick="AddProductCart(${element.id})" id="${element.id}">
+        <button class="btn btn-success" type="submit" onclick="AddProductCart(${item.id})" id="${item.id}">
             <img src="assets/icon/add-to-cart.png" width="42px">
         </button>     
     </div>
-    </div>`;
-    })
+</div>` })
 
-}
+const CalcTotalProducts = (countProduct) => totalProductBuyUI.innerHTML = `<span class="total-products"><b>TOTAL</b> ( ${countProduct} ${(totalProduct > 1) ? "productos" : "producto"} )</span>`;
 
-const CalcTotalProducts = () => {
-    totalProduct++;
-    if( totalProduct > 1){
-        totalProductBuyUI.innerHTML = `<span class="total-products"><b>TOTAL</b> ( ${totalProduct} productos )</span>`;
-    }else{
-        totalProductBuyUI.innerHTML = `<span class="total-products"><b>TOTAL</b> ( ${totalProduct} producto )</span>`;
-    }
-}
-
-const CalcTotalPriceProducts = (price) => {
-    resultTotalPrice += price;
-    totalPriceBuyUI.innerHTML = `<span class="price-product">${resultTotalPrice.toFixed(2)}€</span>`;
-}
+const CalcTotalPriceProducts = (price) =>  totalPriceBuyUI.innerHTML = `<span class="price-product">${price.toFixed(2)}€</span>`;
 
 const DisabledButton = (id) =>  document.getElementById(id).setAttribute("disabled", true);
 
@@ -110,8 +90,9 @@ function AddProductCart(id){
                     </div>
                 </div>
                 <div class="dropdown-divider-grey"></div>`;
-            CalcTotalProducts(); 
-            CalcTotalPriceProducts(items[i].price);
+
+            CalcTotalProducts(totalProduct++);
+            CalcTotalPriceProducts(resultTotalPrice += items[i].price);
             DisabledButton(items[i].id);
             break;
         }
@@ -122,3 +103,5 @@ function AddProductCart(id){
 // Eventos
 
 document.addEventListener('DOMContentLoaded', initialHtmlList);
+
+
