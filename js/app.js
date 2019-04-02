@@ -89,15 +89,14 @@ const CalcTotalPriceProducts = (price) => {
     totalPriceBuyUI.innerHTML = `<span class="price-product">${resultTotalPrice.toFixed(2)}€</span>`;
 }
 
-const DisabledButton = (id) => {
-    document.getElementById(id).setAttribute("disabled", true);
-}
+const DisabledButton = (id) =>  document.getElementById(id).setAttribute("disabled", true);
 
 function AddProductCart(id){
 
     for (let i = 0; i < items.length; i++) {
 
         if( id ===  items[i].id){
+
             productsCardUI.innerHTML += 
                ` <div class="row">
                     <div class="col-3 col-sm-3">
@@ -123,3 +122,44 @@ function AddProductCart(id){
 // Eventos
 
 document.addEventListener('DOMContentLoaded', initialHtmlList);
+/*
+<div class="container">
+    <div class="row">
+        <div class="col-12 col-sm-12 col-md-6 col-lg-6 m-b-88" id="listProducts">
+        </div>
+        <div class="col-12 col-sm-12 col-md-6 col-lg-6">
+            <div class="row box-card-buy">
+                <div class="col-12">
+                    <p class="title-mi-cesta">MI CESTA:</p>
+                    <div class="dropdown-divider"></div>
+                </div>
+                <div class="col-12 hide-list-card-mb" id="productsCard">
+                    <div class="row">
+                            <div class="col-3 col-sm-3">
+                                <img src="${items[i].img}" width="100px" />
+                            </div>
+                            <div class="col-6 col-sm-6 vertical-text-center">
+                                <p class="title-product">${items[i].nameProduct} ${items[i].quantity}</p>
+                            </div>
+                            <div class="col-3 col-sm-3 vertical-text-center">
+                                <span class="price-product">${items[i].price}€</span>
+                            </div>
+                        </div>
+                        <div class="dropdown-divider-grey"></div>
+                    </div>
+                    <div class="col-12 box-result">
+                        <div class="row">
+                            <div class="col-6" id="totalProductBuy">
+                                <span class="total-products"><b>TOTAL</b> ( ${totalProduct} productos )</span>
+                            </div>
+                            <div class="col-6" id="totalPriceBuy">
+                                <span class="price-product">${resultTotalPrice.toFixed(2)}€</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+*/
