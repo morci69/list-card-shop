@@ -123,5 +123,3 @@ function AddProductCart(id){
 // Eventos
 
 document.addEventListener('DOMContentLoaded', initialHtmlList);
-
-
