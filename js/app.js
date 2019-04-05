@@ -27,7 +27,7 @@ const ProductsList = items.map((item) => { return listProductsUI.innerHTML +=
     </div>
 </div>` })
 
-const CalcTotalProducts = (countProduct) => totalProductBuyUI.innerHTML = `<span class="total-products"><b>TOTAL</b> ( ${countProduct} ${(totalProduct > 1) ? "productos" : "producto"} )</span>`;
+const CalcTotalProducts = (countProduct) => totalProductBuyUI.innerHTML = `<span class="total-products"><b>TOTAL</b> ( ${countProduct} ${(countProduct == 1) ? "producto" : "productos"} )</span>`;
 
 const CalcTotalPriceProducts = (price) =>  totalPriceBuyUI.innerHTML = `<span class="price-product">${price.toFixed(2)}€</span>`;
 
@@ -65,4 +65,3 @@ function AddProductCart(id){
 // Eventos
 
 document.addEventListener('DOMContentLoaded', initialHtmlList);
-
